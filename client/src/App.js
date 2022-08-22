@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Options from "./components/Options";
+import FlashCards from "./components/FlashCards";
+import "./App.css";
 
 function App() {
+  const [options, setOptions] = useState({
+    name: "",
+    arithmeticType: "",
+    flashCardType: "",
+  });
+  const [startFlashCard, setStartFlashCard] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Flashcard Generator</h1>
+      {startFlashCard ? (
+        <FlashCards options={options} />
+      ) : (
+        <Options
+          options={options}
+          setOptions={setOptions}
+          setStartFlashCard={setStartFlashCard}
+        />
+      )}
     </div>
   );
 }
