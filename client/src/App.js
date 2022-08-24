@@ -6,8 +6,8 @@ import "./App.css";
 function App() {
   const [options, setOptions] = useState({
     name: "",
-    arithmeticType: "",
-    flashCardType: "",
+    arithmeticType: "multiplication",
+    flashCardType: "practice",
   });
   const [startFlashCard, setStartFlashCard] = useState(false);
 

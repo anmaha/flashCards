@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import FlashCard from "./FlashCard";
+
+import "../styles/FlashCards.css";
 
 const GenerateProblem = (arithmeticType) => {
   const num1 = Math.floor(Math.random() * 13 + 1);
@@ -18,56 +21,11 @@ const GenerateProblems = (arithmeticType, numOfProblems) => {
   return problems;
 };
 
-const FlashCard = ({ num1, num2, ans, arithmeticType, nextProblem }) => {
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [answer, setAnswer] = useState();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (isCorrect) {
-      // Is correct.
-      nextProblem();
-      setIsCorrect(false);
-    } else {
-      // Is incorrect.
-    }
-  };
-  const onChange = (e) => {
-    // console.log("On Change Running.");
-    // console.log(e.target.value, typeof e.target.value);
-    // console.log(e.target.value == ans);
-    setIsCorrect(e.target.value == ans);
-  };
-
-  return (
-    <div
-      className={`flash-card ${
-        isCorrect ? "flash-card-correct" : "flash-card-incorrect"
-      }`}>
-      {arithmeticType === "multiplication" ? (
-        <h1>
-          {num1} x {num2} =
-        </h1>
-      ) : (
-        <h1>
-          {num1} / {num2} =
-        </h1>
-      )}
-      <h2 style={isCorrect ? { display: "block" } : { display: "none" }}>
-        {ans}
-      </h2>
-      <form onSubmit={onSubmit}>
-        <input type="number" onChange={onChange} />
-        <input type="submit" value="Submit" style={{ display: "none" }} />
-      </form>
-    </div>
-  );
-};
-
 const FlashCards = ({ options }) => {
   const [problems, setProblems] = useState([]);
   const [problemIdx, setProblemIdx] = useState(0);
   const [testTimer, setTestTimer] = useState(0);
+  const [isTestComplete, setIsTestComplete] = useState(false);
 
   useEffect(() => {
     switch (options.flashCardType) {
@@ -93,6 +51,9 @@ const FlashCards = ({ options }) => {
       }, 1000);
     }
   }, []);
+  useEffect(() => {
+    setIsTestComplete(testTimer <= 0);
+  }, [testTimer]);
 
   const nextProblem = () => {
     setProblemIdx(problemIdx + 1);
@@ -100,7 +61,10 @@ const FlashCards = ({ options }) => {
   };
 
   return (
-    <div>
+    <div className="flash-cards">
+      <h2 className="problem-count">
+        {problemIdx}/{problems.length}
+      </h2>
       {problems[problemIdx] && (
         <FlashCard
           num1={problems[problemIdx][0]}
@@ -110,14 +74,13 @@ const FlashCards = ({ options }) => {
           nextProblem={nextProblem}
         />
       )}
-
       <h2
         style={
           options.flashCardType === "test"
             ? { display: "block" }
             : { display: "none" }
         }>
-        {testTimer}
+        <img src="components/images/" alt="" /> {testTimer}
       </h2>
     </div>
   );

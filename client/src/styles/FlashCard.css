@@ -1,0 +1,27 @@
+.flash-card {
+    width: 65%;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: #F8EEA7;
+    box-shadow: 0 0 4px #949494;
+}
+
+.flash-card-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flash-card-input input {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 32px;
+    font-weight: 700;
+    width: 4rem;
+    margin-left: 0.125rem;
+}
+
+.flash-card-input input:focus {
+    outline: none;
+}

@@ -1,0 +1,19 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin: 0.125rem;
+    padding: 0.125rem;
+}
+
+input[type='submit'] {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0.125rem;
+
+    font-size: larger;
+    font-weight: bold;
+}

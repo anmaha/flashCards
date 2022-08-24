@@ -1,0 +1,13 @@
+.flash-cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+.problem-count {
+    width: 65%;
+    text-align: end;   
+}

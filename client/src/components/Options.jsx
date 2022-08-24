@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/Options.css";
+
 /**
  * Name
  * Multiplication or Division
@@ -22,42 +24,47 @@ const Options = ({ options, setOptions, setStartFlashCard }) => {
 
   return (
     <div>
+      <h1>{options && options.arithmeticType} Flash Cards</h1>
       <form onSubmit={onSubmit}>
-        <label>
-          {" "}
-          Enter your name:
+        <div className="input-group">
+          <label htmlFor="name">Name:</label>
           <input type="text" name="name" onChange={onChange} />
-        </label>
-        What would you like to practice?
-        <label>
-          Multiplication
+        </div>
+        {/* What would you like to practice? */}
+        <div className="input-group">
+          <label htmlFor="arithmeticType">Multiplication</label>
           <input
             type="radio"
             name="arithmeticType"
             value="multiplication"
             onChange={onChange}
           />
-        </label>
-        <label>
-          Division
+          <label htmlFor="arithmeticType">Division</label>
           <input
             type="radio"
             name="arithmeticType"
             value="division"
             onChange={onChange}
           />
-        </label>
-        Take a timed test?
-        <label>
-          No
+        </div>
+        {/* Take a timed test? */}
+        <div className="input-group">
+          <label htmlFor="flashCardType">Practice</label>
           <input
             type="radio"
             name="flashCardType"
             value="practice"
             onChange={onChange}
           />
-        </label>{" "}
-        <label>
+          <label htmlFor="flashCardType">Test</label>
+          <input
+            type="radio"
+            name="flashCardType"
+            value="test"
+            onChange={onChange}
+          />
+        </div>
+        {/* <label>
           Yes
           <input
             type="radio"
@@ -65,7 +72,7 @@ const Options = ({ options, setOptions, setStartFlashCard }) => {
             value="test"
             onChange={onChange}
           />
-        </label>
+        </label> */}
         <input type="submit" value="Start" />
       </form>
     </div>
